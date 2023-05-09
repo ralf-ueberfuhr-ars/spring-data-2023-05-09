@@ -1,3 +1,18 @@
 springdoc:
   swagger-ui:
     enabled: false
+spring:
+  datasource:
+    url: jdbc:<anotherdb>
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  h2:
+    console:
+      enabled: false
+#logging:
+#  level:
+#    org.hibernate.SQL: TRACE
+#    org.hibernate.type.descriptor.sql: TRACE # prepstmt
+#    org.hibernate.orm: TRACE
