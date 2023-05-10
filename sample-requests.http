@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 > {%
-      client.test("Customer created successfully", function() {
+      client.test("Customer created successfully", () => {
          client.assert(response.status === 201, "Response Status is not 201");
           const location = response.headers.valueOf("Location");
           client.log("New customer available under " + location);
