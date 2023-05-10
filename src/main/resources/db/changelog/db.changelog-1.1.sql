@@ -1,0 +1,2 @@
+-- changeset Ralf Ueberfuhr:2
+ALTER TABLE CUSTOMERS ADD COLUMN BIRTHDATE date;
