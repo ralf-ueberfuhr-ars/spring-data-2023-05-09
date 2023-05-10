@@ -1,24 +1,26 @@
-# curl -X 'POST'
-#  'http://localhost:8082/api/v1/customers'
-#  -H 'accept: application/json'
-#  -H 'Content-Type: application/json'
-#  -d '{
-#  "name": "Tom Mayer",
-#  "birthdate": "2020-05-04"
-#}'
 POST http://localhost:8082/api/v1/customers
 accept: application/json
 Content-Type: application/json
 
 {
-  "name": "J",
-  "birthdate": "2020-04-04"
+  "name": "John",
+  "birthdate": "2020-04-04",
+  "interests": [
+    "gardening",
+    "soccer"
+  ]
 }
 
+> {%
+      client.test("Customer created successfully", function() {
+         client.assert(response.status === 201, "Response Status is not 201");
+          const location = response.headers.valueOf("Location");
+          client.log("New customer available under " + location);
+          client.global.set("customer_john", location)
+      });
+ %}
+
 ###
 
-DELETE http://localhost:8082/api/v1/customers/2e0c2973-ed17-4cfc-a3ec-ed5caf67429f
-
-###
-
-GET http://localhost:8082/api/v1/customers/2e0c2973-ed17-4cfc-a3ec-ed5caf67429f
+GET {{customer_john}}
+accept: application/json
