@@ -17,6 +17,17 @@ mvn package
 java -jar target/customer-service-spring-0.0.1-SNAPSHOT.jar
 ```
 
+## Liquibase
+
+We can run the application locally using the `liquibase` profile. In contrast to the `dev` profile,
+this will disable automatic schema generation by Hibernate and enable Liquibase ChangeLog Activation.
+This will connect to another local database, so we have both databases, one for each profile.
+
+### Changelog Generation
+
+We can use the `liquibase-maven-plugin:generateChangeLog` goal to initially generate a sample changelog
+from the database that was created by Hibernate. Therefore, we need to activate the `liquibase` Maven profile.
+
 ## Further
 
 ### Reference Documentation
