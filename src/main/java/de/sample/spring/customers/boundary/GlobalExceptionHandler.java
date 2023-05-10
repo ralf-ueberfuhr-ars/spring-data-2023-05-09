@@ -1,4 +1,4 @@
-package de.sample.spring.customers;
+package de.sample.spring.customers.boundary;
 
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpHeaders;

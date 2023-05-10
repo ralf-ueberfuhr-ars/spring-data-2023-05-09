@@ -1,4 +1,4 @@
-package de.sample.spring.customers;
+package de.sample.spring.customers.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
