@@ -17,6 +17,14 @@ mvn package
 java -jar target/customer-service-spring-0.0.1-SNAPSHOT.jar
 ```
 
+### Open Web UI
+
+A Swagger UI is integrated when running the application
+with the `dev` profile and can be opened using
+`http://localhost:8082/swagger-ui.html`
+Also, the H2 Console is enabled in this profile and available under
+`http://localhost:8082/db` (URL `jdbc:h2:./.local-db/data` with an empty username and password)
+
 ## Further
 
 ### Reference Documentation

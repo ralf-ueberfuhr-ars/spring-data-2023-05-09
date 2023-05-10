@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -27,6 +29,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class CustomerController {
 
     private final CustomerRepository repo;
+    private final OrderRepository orderRepository;
 
     @GetMapping(
       produces = MediaType.APPLICATION_JSON_VALUE
@@ -67,6 +70,40 @@ public class CustomerController {
         } else {
             throw new NotFoundException();
         }
+    }
+
+    @PutMapping("/{id}/avatar")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void assignAvatarToCustomer(@PathVariable("id") UUID id, @Valid @RequestBody Avatar avatar) {
+        final var customer = this.repo
+          .findById(id)
+          .orElseThrow(NotFoundException::new);
+        customer.setAvatar(avatar);
+        this.repo.save(customer);
+    }
+
+    @GetMapping("/{id}/orders")
+    public List<Order> findAllOrders(@PathVariable("id") UUID customerId) {
+        final var customer = this.repo
+          .findById(customerId)
+          .orElseThrow(NotFoundException::new);
+        return this.orderRepository.findAllByCustomer(customer);
+    }
+
+    @PostMapping("/{id}/orders")
+    public ResponseEntity<Order> createOrder(
+      @PathVariable("id") UUID customerId,
+      @Valid @RequestBody Order order
+    ) {
+        final var customer = this.repo
+          .findById(customerId)
+          .orElseThrow(NotFoundException::new);
+        order.setCustomer(customer);
+        var result = this.orderRepository.save(order);
+        URI location = linkTo(
+          methodOn(OrderController.class).findById(result.getId())
+        ).toUri();
+        return ResponseEntity.created(location).body(result);
     }
 
 }
