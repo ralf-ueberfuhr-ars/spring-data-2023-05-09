@@ -1,4 +1,4 @@
-package de.sample.spring.customers;
+package de.sample.spring.customers.persistence;
 
 import de.sample.spring.customers.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,8 @@
 package de.sample.spring.customers;
 
 import de.sample.spring.customers.entities.Customer;
+import de.sample.spring.customers.persistence.CustomerRepository;
+import de.sample.spring.customers.entities.Customer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
