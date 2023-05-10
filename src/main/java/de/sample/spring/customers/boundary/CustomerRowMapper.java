@@ -1,6 +1,6 @@
 package de.sample.spring.customers.boundary;
 
-import de.sample.spring.customers.Customer;
+import de.sample.spring.customers.entities.Customer;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
