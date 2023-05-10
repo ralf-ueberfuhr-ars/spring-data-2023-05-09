@@ -1,7 +1,6 @@
 package de.sample.spring.customers.boundary;
 
 import de.sample.spring.customers.entities.Customer;
-import de.sample.spring.customers.entities.Customer;
 import de.sample.spring.customers.persistence.CustomerRowMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
