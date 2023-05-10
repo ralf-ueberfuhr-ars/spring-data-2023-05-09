@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -19,6 +20,10 @@ import java.util.UUID;
 @Setter
 @ToString
 @Table(name = "CUSTOMERS")
+@NamedQuery(
+  name = "findAllCustomers",
+  query = "SELECT c FROM Customer c"
+)
 public class Customer {
 
     @Id
