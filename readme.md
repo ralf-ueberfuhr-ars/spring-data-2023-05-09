@@ -7,14 +7,14 @@
 Run the `CustomerServiceApplication` class directly or use Maven:
 
 ```bash
-mvn spring-boot:run
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 or build the JAR and run
 
 ```bash
 mvn package
-java -jar target/customer-service-spring-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=dev target/customer-service-spring-data-0.0.1-SNAPSHOT.jar
 ```
 
 ## Liquibase
@@ -27,6 +27,10 @@ This will connect to another local database, so we have both databases, one for 
 
 We can use the `liquibase-maven-plugin:generateChangeLog` goal to initially generate a sample changelog
 from the database that was created by Hibernate. Therefore, we need to activate the `liquibase` Maven profile.
+
+```bash
+mvn liquibase:generateChangeLog -Pliquibase
+```
 
 ## Further
 
